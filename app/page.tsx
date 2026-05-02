@@ -1,17 +1,28 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
-import ArticleCard from '@/components/ArticleCard'
-import useStateArticle from '@/content/hooks/use-state'
-import useEffectArticle from '@/content/hooks/use-effect'
-import compoundArticle from '@/content/patterns/compound-component'
-import renderPropsArticle from '@/content/patterns/render-props'
+import CollectionCard, { type Collection } from '@/components/CollectionCard'
 
 export const metadata: Metadata = {
   title: 'React Handbook',
   description: 'Học React hooks và patterns từ cơ bản đến nâng cao — với ví dụ thực tế và live preview.',
 }
 
-const allArticles = [useStateArticle, useEffectArticle, compoundArticle, renderPropsArticle]
+const collections: Collection[] = [
+  {
+    title: 'React Hooks',
+    description: 'useState, useEffect và các hooks thường dùng nhất — từ cơ bản đến nâng cao.',
+    category: 'hooks',
+    href: '/blog/hooks',
+    count: 2,
+  },
+  {
+    title: 'React Patterns',
+    description: 'Compound Component, Render Props và các design patterns thực tế trong React.',
+    category: 'patterns',
+    href: '/blog/patterns',
+    count: 2,
+  },
+]
 
 export default function HomePage() {
   return (
@@ -31,7 +42,7 @@ export default function HomePage() {
         </p>
 
         <Link
-          href="/hooks/use-state"
+          href="/blog"
           className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors"
         >
           Bắt đầu học
@@ -39,24 +50,18 @@ export default function HomePage() {
         </Link>
       </section>
 
-      {/* Articles */}
+      {/* Collections */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 pb-20">
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-xl font-bold text-slate-900 dark:text-white">Tất cả bài viết</h2>
-          <div className="flex gap-2">
-            <Link href="/hooks" className="text-sm text-indigo-600 dark:text-indigo-400 hover:underline">
-              Hooks →
-            </Link>
-            <span className="text-slate-300 dark:text-slate-600">·</span>
-            <Link href="/patterns" className="text-sm text-indigo-600 dark:text-indigo-400 hover:underline">
-              Patterns →
-            </Link>
-          </div>
+          <h2 className="text-xl font-bold text-slate-900 dark:text-white">Chủ đề</h2>
+          <Link href="/blog" className="text-sm text-indigo-600 dark:text-indigo-400 hover:underline">
+            Xem blog →
+          </Link>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
-          {allArticles.map(article => (
-            <ArticleCard key={article.slug} article={article} />
+          {collections.map(item => (
+            <CollectionCard key={item.href} item={item} />
           ))}
         </div>
       </section>

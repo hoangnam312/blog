@@ -20,16 +20,10 @@ export default function Navbar() {
             Home
           </Link>
           <Link
-            href="/hooks"
+            href="/blog"
             className="px-3 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
           >
-            Hooks
-          </Link>
-          <Link
-            href="/patterns"
-            className="px-3 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
-          >
-            Patterns
+            Blog
           </Link>
           <ThemeToggle />
         </nav>
