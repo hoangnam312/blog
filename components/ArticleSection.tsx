@@ -6,11 +6,6 @@ const categoryLabel: Record<Article['category'], string> = {
   patterns: 'Pattern',
 }
 
-const categoryColor: Record<Article['category'], string> = {
-  hooks: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300',
-  patterns: 'bg-violet-100 text-violet-700 dark:bg-violet-900/40 dark:text-violet-300',
-}
-
 interface ArticleSectionProps {
   article: Article
   codeHtmls: string[]
@@ -21,10 +16,10 @@ export default function ArticleSection({ article, codeHtmls }: ArticleSectionPro
     <section aria-labelledby={`section-${article.slug}`} className="mb-12 last:mb-0">
       <header className="mb-5">
         <div className="flex items-center gap-2 mb-2">
-          <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${categoryColor[article.category]}`}>
+          <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-accent-dim text-accent">
             {categoryLabel[article.category]}
           </span>
-          <time className="text-xs text-slate-400 dark:text-slate-500" dateTime={article.publishedAt}>
+          <time className="text-xs text-muted" dateTime={article.publishedAt}>
             {new Date(article.publishedAt).toLocaleDateString('vi-VN', {
               year: 'numeric',
               month: 'long',
@@ -34,11 +29,11 @@ export default function ArticleSection({ article, codeHtmls }: ArticleSectionPro
         </div>
         <h2
           id={`section-${article.slug}`}
-          className="text-2xl font-bold text-slate-900 dark:text-white mb-2"
+          className="text-2xl font-bold font-display text-fg mb-2"
         >
           {article.title}
         </h2>
-        <p className="text-slate-500 dark:text-slate-400">{article.description}</p>
+        <p className="text-muted">{article.description}</p>
       </header>
 
       <div className="space-y-3">

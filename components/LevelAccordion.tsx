@@ -9,9 +9,9 @@ import LivePreview from './LivePreview'
 import type { Level } from '@/lib/types'
 
 const badgeStyle: Record<Level['badge'], string> = {
-  'Cơ bản': 'bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300',
-  'Trung cấp': 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/40 dark:text-yellow-300',
-  'Nâng cao': 'bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300',
+  'Cơ bản': 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300',
+  'Trung cấp': 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300',
+  'Nâng cao': 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300',
 }
 
 const panelId = (title: string, badge: string) =>
@@ -28,18 +28,18 @@ export default function LevelAccordion({ level, codeHtml, defaultOpen }: LevelAc
   const id = panelId(level.badge, level.language)
 
   return (
-    <section className="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden">
+    <section className="border border-rim rounded-card overflow-hidden">
       <button
         onClick={() => setIsOpen(o => !o)}
         aria-expanded={isOpen}
         aria-controls={id}
-        className="w-full flex items-center justify-between gap-3 px-5 py-4 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-750 text-left transition-colors"
+        className="w-full flex items-center justify-between gap-3 px-5 py-4 bg-card hover:bg-raised text-left transition-colors"
       >
         <div className="flex items-center gap-3">
           <span className={`text-xs font-bold px-2.5 py-1 rounded-full whitespace-nowrap ${badgeStyle[level.badge]}`}>
             {level.badge}
           </span>
-          <span className="font-semibold text-slate-800 dark:text-slate-200">
+          <span className="font-semibold text-fg">
             {level.badge === 'Cơ bản' && 'Kiến thức cơ bản'}
             {level.badge === 'Trung cấp' && 'Nâng cao kỹ năng'}
             {level.badge === 'Nâng cao' && 'Chuyên sâu'}
@@ -48,7 +48,7 @@ export default function LevelAccordion({ level, codeHtml, defaultOpen }: LevelAc
         <motion.span
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.2 }}
-          className="text-slate-400 dark:text-slate-500 shrink-0"
+          className="text-muted shrink-0"
           aria-hidden="true"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -68,10 +68,10 @@ export default function LevelAccordion({ level, codeHtml, defaultOpen }: LevelAc
             transition={{ duration: 0.25, ease: 'easeInOut' }}
             className="overflow-hidden"
           >
-            <div className="px-5 pb-6 pt-4 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-700 space-y-4">
+            <div className="px-5 pb-6 pt-4 bg-raised border-t border-rim space-y-4">
               <div className="prose prose-slate dark:prose-invert prose-sm max-w-none
                 prose-headings:font-semibold prose-h2:text-base prose-h3:text-sm
-                prose-code:bg-slate-200 dark:prose-code:bg-slate-700 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-mono prose-code:before:content-none prose-code:after:content-none">
+                prose-code:bg-rim-subtle prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-mono prose-code:before:content-none prose-code:after:content-none">
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>
                   {level.explanation}
                 </ReactMarkdown>
@@ -81,7 +81,7 @@ export default function LevelAccordion({ level, codeHtml, defaultOpen }: LevelAc
 
               {level.showLivePreview && level.sandpackCode && (
                 <div className="mt-4">
-                  <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
+                  <h3 className="text-sm font-semibold text-muted mb-2">
                     Live Preview
                   </h3>
                   <LivePreview code={level.sandpackCode} />

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter, JetBrains_Mono } from 'next/font/google'
+import { Inter, JetBrains_Mono, Manrope } from 'next/font/google'
 import './globals.css'
 import ThemeProvider from '@/components/ThemeProvider'
 import Navbar from '@/components/Navbar'
@@ -17,15 +17,21 @@ const jetbrainsMono = JetBrains_Mono({
   display: 'swap',
 })
 
+const manrope = Manrope({
+  subsets: ['latin'],
+  variable: '--font-manrope',
+  display: 'swap',
+})
+
 export const metadata: Metadata = {
   title: {
-    template: '%s | React Handbook',
-    default: 'React Handbook',
+    template: '%s | Hoàng Nam',
+    default: 'Hoàng Nam',
   },
-  description: 'Học React hooks và patterns từ cơ bản đến nâng cao',
+  description: 'Blog về React hooks và patterns.',
   metadataBase: new URL(DOMAIN),
   openGraph: {
-    siteName: 'React Handbook',
+    siteName: 'Hoàng Nam',
     images: ['/og-default.png'],
   },
   twitter: {
@@ -35,14 +41,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="vi" suppressHydrationWarning className={`${inter.variable} ${jetbrainsMono.variable}`}>
-      <body className="min-h-screen bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 font-sans antialiased">
+    <html lang="vi" suppressHydrationWarning className={`${inter.variable} ${jetbrainsMono.variable} ${manrope.variable}`}>
+      <body className="min-h-screen bg-canvas text-fg font-sans antialiased">
         <ThemeProvider>
           <Navbar />
           {children}
-          <footer className="mt-24 border-t border-slate-200 dark:border-slate-800">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 text-sm text-slate-500 dark:text-slate-400 text-center">
-              © {new Date().getFullYear()} React Handbook · Built with Next.js &amp; Tailwind CSS
+          <footer className="mt-24 border-t border-rim">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 py-6 text-sm text-muted text-center">
+              © {new Date().getFullYear()} Hoàng Nam
             </div>
           </footer>
         </ThemeProvider>

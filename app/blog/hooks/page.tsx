@@ -15,11 +15,11 @@ export const metadata: Metadata = {
     description: 'Hướng dẫn đầy đủ về useState, useEffect từ cơ bản đến nâng cao.',
     type: 'website',
     url: '/blog/hooks',
-    siteName: 'React Handbook',
+    siteName: 'Hoàng Nam',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'React Hooks | React Handbook',
+    title: 'React Hooks | Hoàng Nam',
     description: 'Hướng dẫn đầy đủ về useState, useEffect từ cơ bản đến nâng cao.',
   },
 }
@@ -38,7 +38,7 @@ export default async function HooksPage() {
     '@type': 'TechArticle',
     headline: 'React Hooks',
     description: metadata.description,
-    author: { '@type': 'Person', name: 'React Handbook' },
+    author: { '@type': 'Person', name: 'Hoàng Nam' },
     url: `${DOMAIN}/blog/hooks`,
   }
 
@@ -50,28 +50,22 @@ export default async function HooksPage() {
       />
       <main className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
         <nav aria-label="Breadcrumb" className="mb-8">
-          <ol className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
-            <li><Link href="/" className="hover:text-indigo-600 dark:hover:text-indigo-400">Home</Link></li>
+          <ol className="flex items-center gap-2 text-sm text-muted">
+            <li><Link href="/" className="hover:text-fg transition-colors">Home</Link></li>
             <li aria-hidden="true">/</li>
-            <li><Link href="/blog" className="hover:text-indigo-600 dark:hover:text-indigo-400">Blog</Link></li>
+            <li><Link href="/blog" className="hover:text-fg transition-colors">Blog</Link></li>
             <li aria-hidden="true">/</li>
-            <li className="text-slate-900 dark:text-slate-100 font-medium">Hooks</li>
+            <li className="text-fg font-medium">Hooks</li>
           </ol>
         </nav>
 
         <header className="mb-12">
-          <span className="inline-block text-xs font-bold px-2.5 py-1 rounded-full bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300 mb-3">
-            Hooks
-          </span>
-          <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-3">
+          <h1 className="text-3xl sm:text-4xl font-bold font-display text-fg">
             React Hooks
           </h1>
-          <p className="text-lg text-slate-500 dark:text-slate-400">
-            Hướng dẫn đầy đủ về các React hooks từ cơ bản đến nâng cao.
-          </p>
         </header>
 
-        <div className="divide-y divide-slate-200 dark:divide-slate-700">
+        <div className="divide-y divide-rim">
           {articles.map((article, i) => (
             <div key={article.slug} className="py-10 first:pt-0 last:pb-0">
               <ArticleSection article={article} codeHtmls={allCodeHtmls[i]} />

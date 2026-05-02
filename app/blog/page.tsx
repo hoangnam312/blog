@@ -38,18 +38,15 @@ export default function BlogPage() {
   return (
     <main className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
       <nav aria-label="Breadcrumb" className="mb-8">
-        <ol className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
-          <li><Link href="/" className="hover:text-indigo-600 dark:hover:text-indigo-400">Home</Link></li>
+        <ol className="flex items-center gap-2 text-sm text-muted">
+          <li><Link href="/" className="hover:text-fg transition-colors">Home</Link></li>
           <li aria-hidden="true">/</li>
-          <li className="text-slate-900 dark:text-slate-100 font-medium">Blog</li>
+          <li className="text-fg font-medium">Blog</li>
         </ol>
       </nav>
 
       <header className="mb-10">
-        <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Blog</h1>
-        <p className="text-slate-500 dark:text-slate-400">
-          Các bài viết về React hooks và design patterns với ví dụ thực tế.
-        </p>
+        <h1 className="text-3xl font-bold font-display text-fg">Blog</h1>
       </header>
 
       <div className="grid gap-4 sm:grid-cols-2">

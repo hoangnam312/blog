@@ -15,11 +15,11 @@ export const metadata: Metadata = {
     description: 'Hướng dẫn đầy đủ về Compound Component và Render Props.',
     type: 'website',
     url: '/blog/patterns',
-    siteName: 'React Handbook',
+    siteName: 'Hoàng Nam',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'React Patterns | React Handbook',
+    title: 'React Patterns | Hoàng Nam',
     description: 'Hướng dẫn đầy đủ về Compound Component và Render Props.',
   },
 }
@@ -38,7 +38,7 @@ export default async function PatternsPage() {
     '@type': 'TechArticle',
     headline: 'React Patterns',
     description: metadata.description,
-    author: { '@type': 'Person', name: 'React Handbook' },
+    author: { '@type': 'Person', name: 'Hoàng Nam' },
     url: `${DOMAIN}/blog/patterns`,
   }
 
@@ -50,28 +50,22 @@ export default async function PatternsPage() {
       />
       <main className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
         <nav aria-label="Breadcrumb" className="mb-8">
-          <ol className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
-            <li><Link href="/" className="hover:text-indigo-600 dark:hover:text-indigo-400">Home</Link></li>
+          <ol className="flex items-center gap-2 text-sm text-muted">
+            <li><Link href="/" className="hover:text-fg transition-colors">Home</Link></li>
             <li aria-hidden="true">/</li>
-            <li><Link href="/blog" className="hover:text-indigo-600 dark:hover:text-indigo-400">Blog</Link></li>
+            <li><Link href="/blog" className="hover:text-fg transition-colors">Blog</Link></li>
             <li aria-hidden="true">/</li>
-            <li className="text-slate-900 dark:text-slate-100 font-medium">Patterns</li>
+            <li className="text-fg font-medium">Patterns</li>
           </ol>
         </nav>
 
         <header className="mb-12">
-          <span className="inline-block text-xs font-bold px-2.5 py-1 rounded-full bg-violet-100 text-violet-700 dark:bg-violet-900/40 dark:text-violet-300 mb-3">
-            Patterns
-          </span>
-          <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-3">
+          <h1 className="text-3xl sm:text-4xl font-bold font-display text-fg">
             React Patterns
           </h1>
-          <p className="text-lg text-slate-500 dark:text-slate-400">
-            Các design patterns giúp xây dựng component linh hoạt và dễ tái sử dụng.
-          </p>
         </header>
 
-        <div className="divide-y divide-slate-200 dark:divide-slate-700">
+        <div className="divide-y divide-rim">
           {articles.map((article, i) => (
             <div key={article.slug} className="py-10 first:pt-0 last:pb-0">
               <ArticleSection article={article} codeHtmls={allCodeHtmls[i]} />

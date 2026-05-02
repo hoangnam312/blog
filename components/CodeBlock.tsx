@@ -20,15 +20,15 @@ export default function CodeBlock({ html, language }: CodeBlockProps) {
   }
 
   return (
-    <div className="relative group rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 my-4">
-      <div className="flex items-center justify-between px-4 py-2 bg-slate-100 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
-        <span className="text-xs font-mono text-slate-500 dark:text-slate-400">
+    <div className="relative group rounded-card overflow-hidden border border-rim my-4">
+      <div className="flex items-center justify-between px-4 py-2 bg-raised border-b border-rim">
+        <span className="text-xs font-mono text-muted">
           {language}
         </span>
         <button
           onClick={handleCopy}
           aria-label="Copy code"
-          className="text-xs text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 flex items-center gap-1.5 transition-colors"
+          className="text-xs text-muted hover:text-fg flex items-center gap-1.5 transition-colors"
         >
           {copied ? (
             <>
