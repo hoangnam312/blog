@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { highlight } from '@/lib/highlight'
+import { highlight, highlightExplanation } from '@/lib/highlight'
 import ArticleSection from '@/components/ArticleSection'
 import useStateArticle from '@/content/hooks/use-state'
 import useEffectArticle from '@/content/hooks/use-effect'
@@ -27,11 +27,18 @@ export const metadata: Metadata = {
 const articles = [useStateArticle, useEffectArticle]
 
 export default async function HooksPage() {
-  const allCodeHtmls = await Promise.all(
-    articles.map(article =>
-      Promise.all(article.levels.map(level => highlight(level.code, level.language)))
-    )
-  )
+  const [allCodeHtmls, allExplanationHtmls] = await Promise.all([
+    Promise.all(
+      articles.map(article =>
+        Promise.all(article.levels.map(level => highlight(level.code, level.language)))
+      )
+    ),
+    Promise.all(
+      articles.map(article =>
+        Promise.all(article.levels.map(level => highlightExplanation(level.explanation)))
+      )
+    ),
+  ])
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -68,7 +75,7 @@ export default async function HooksPage() {
         <div className="divide-y divide-rim">
           {articles.map((article, i) => (
             <div key={article.slug} className="py-10 first:pt-0 last:pb-0">
-              <ArticleSection article={article} codeHtmls={allCodeHtmls[i]} />
+              <ArticleSection article={article} codeHtmls={allCodeHtmls[i]} explanationHtmls={allExplanationHtmls[i]} />
             </div>
           ))}
         </div>

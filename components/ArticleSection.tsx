@@ -9,9 +9,10 @@ const categoryLabel: Record<Article['category'], string> = {
 interface ArticleSectionProps {
   article: Article
   codeHtmls: string[]
+  explanationHtmls: string[]
 }
 
-export default function ArticleSection({ article, codeHtmls }: ArticleSectionProps) {
+export default function ArticleSection({ article, codeHtmls, explanationHtmls }: ArticleSectionProps) {
   return (
     <section aria-labelledby={`section-${article.slug}`} className="mb-12 last:mb-0">
       <header className="mb-5">
@@ -42,6 +43,7 @@ export default function ArticleSection({ article, codeHtmls }: ArticleSectionPro
             key={level.badge}
             level={level}
             codeHtml={codeHtmls[i]}
+            explanationHtml={explanationHtmls[i]}
             defaultOpen={i === 0}
           />
         ))}

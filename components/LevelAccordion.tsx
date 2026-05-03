@@ -2,8 +2,6 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
 import CodeBlock from './CodeBlock'
 import LivePreview from './LivePreview'
 import type { Level } from '@/lib/types'
@@ -20,10 +18,11 @@ const panelId = (title: string, badge: string) =>
 interface LevelAccordionProps {
   level: Level
   codeHtml: string
+  explanationHtml: string
   defaultOpen: boolean
 }
 
-export default function LevelAccordion({ level, codeHtml, defaultOpen }: LevelAccordionProps) {
+export default function LevelAccordion({ level, codeHtml, explanationHtml, defaultOpen }: LevelAccordionProps) {
   const [isOpen, setIsOpen] = useState(defaultOpen)
   const id = panelId(level.badge, level.language)
 
@@ -39,11 +38,11 @@ export default function LevelAccordion({ level, codeHtml, defaultOpen }: LevelAc
           <span className={`text-xs font-bold px-2.5 py-1 rounded-full whitespace-nowrap ${badgeStyle[level.badge]}`}>
             {level.badge}
           </span>
-          <span className="font-semibold text-fg">
+          {/* <span className="font-semibold text-fg">
             {level.badge === 'Cơ bản' && 'Kiến thức cơ bản'}
             {level.badge === 'Trung cấp' && 'Nâng cao kỹ năng'}
             {level.badge === 'Nâng cao' && 'Chuyên sâu'}
-          </span>
+          </span> */}
         </div>
         <motion.span
           animate={{ rotate: isOpen ? 180 : 0 }}
@@ -69,13 +68,13 @@ export default function LevelAccordion({ level, codeHtml, defaultOpen }: LevelAc
             className="overflow-hidden"
           >
             <div className="px-5 pb-6 pt-4 bg-raised border-t border-rim space-y-4">
-              <div className="prose prose-slate dark:prose-invert prose-sm max-w-none
-                prose-headings:font-semibold prose-h2:text-base prose-h3:text-sm
-                prose-code:bg-rim-subtle prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-mono prose-code:before:content-none prose-code:after:content-none">
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                  {level.explanation}
-                </ReactMarkdown>
-              </div>
+              <div
+                className="prose prose-slate dark:prose-invert prose-sm max-w-none
+                  prose-headings:font-semibold prose-h2:text-base prose-h3:text-sm
+                  prose-code:bg-rim-subtle prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-mono prose-code:before:content-none prose-code:after:content-none
+                  [&_.shiki-wrapper]:not-prose"
+                dangerouslySetInnerHTML={{ __html: explanationHtml }}
+              />
 
               <CodeBlock html={codeHtml} language={level.language} />
 
