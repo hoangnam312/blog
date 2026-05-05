@@ -2,6 +2,8 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import CodeBlock from './CodeBlock'
 import LivePreview from './LivePreview'
 import type { Level } from '@/lib/types'
@@ -18,7 +20,7 @@ const panelId = (title: string, badge: string) =>
 interface LevelAccordionProps {
   level: Level
   codeHtml: string
-  explanationHtml: string
+  explanationHtml?: string
   defaultOpen: boolean
 }
 
@@ -68,13 +70,18 @@ export default function LevelAccordion({ level, codeHtml, explanationHtml, defau
             className="overflow-hidden"
           >
             <div className="px-5 pb-6 pt-4 bg-raised border-t border-rim space-y-4">
-              <div
-                className="prose prose-slate dark:prose-invert prose-sm max-w-none
-                  prose-headings:font-semibold prose-h2:text-base prose-h3:text-sm
-                  prose-code:bg-rim-subtle prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-mono prose-code:before:content-none prose-code:after:content-none
-                  [&_.shiki-wrapper]:not-prose"
-                dangerouslySetInnerHTML={{ __html: explanationHtml }}
-              />
+              <div className="prose prose-slate dark:prose-invert prose-sm max-w-none
+                prose-headings:font-semibold prose-h2:text-base prose-h3:text-sm
+                prose-code:bg-rim-subtle prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-mono prose-code:before:content-none prose-code:after:content-none
+                [&_.shiki-wrapper]:not-prose">
+                {explanationHtml ? (
+                  <div dangerouslySetInnerHTML={{ __html: explanationHtml }} />
+                ) : (
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    {level.explanation}
+                  </ReactMarkdown>
+                )}
+              </div>
 
               <CodeBlock html={codeHtml} language={level.language} />
 
