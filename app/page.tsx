@@ -15,11 +15,11 @@ const collections: Collection[] = [
     count: 2,
   },
   {
-    title: 'React Patterns',
-    description: 'Compound Component, Render Props và các design patterns thực tế trong React.',
-    category: 'patterns',
-    href: '/blog/patterns',
-    count: 2,
+    title: 'Principles',
+    description: 'Bộ tiêu chí thiết kế component — lấy cảm hứng từ OOP, áp dụng cho React.',
+    category: 'principles',
+    href: '/blog/principles',
+    count: 1,
   },
 ]
 

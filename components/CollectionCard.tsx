@@ -2,13 +2,13 @@ import Link from 'next/link'
 
 const badgeLabel = {
   hooks: 'Hooks',
-  patterns: 'Patterns',
+  principles: 'Principles',
 }
 
 export interface Collection {
   title: string
   description: string
-  category: 'hooks' | 'patterns'
+  category: 'hooks' | 'principles'
   href: string
   count: number
 }

@@ -22,10 +22,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
-      url: `${DOMAIN}/blog/patterns`,
-      lastModified: new Date('2024-02-12'),
+      url: `${DOMAIN}/blog/principles`,
+      lastModified: new Date('2026-05-05'),
       changeFrequency: 'monthly',
       priority: 0.7,
+    },
+    {
+      url: `${DOMAIN}/blog/principles/ccp`,
+      lastModified: new Date('2026-05-05'),
+      changeFrequency: 'monthly',
+      priority: 0.6,
     },
   ]
 }

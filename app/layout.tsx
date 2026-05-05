@@ -42,15 +42,17 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="vi" suppressHydrationWarning className={`${inter.variable} ${jetbrainsMono.variable} ${manrope.variable}`}>
-      <body className="min-h-screen bg-canvas text-fg font-sans antialiased">
+      <body className="bg-canvas text-fg font-sans antialiased">
         <ThemeProvider>
-          <Navbar />
-          {children}
-          <footer className="mt-24 border-t border-rim">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 py-6 text-sm text-muted text-center">
-              © {new Date().getFullYear()} Hoàng Nam
-            </div>
-          </footer>
+          <div className="min-h-screen flex flex-col">
+            <Navbar />
+            <div className="flex-1">{children}</div>
+            <footer className="mt-24 border-t border-rim">
+              <div className="max-w-4xl mx-auto px-4 sm:px-6 py-6 text-sm text-muted text-center">
+                © {new Date().getFullYear()} Hoàng Nam
+              </div>
+            </footer>
+          </div>
         </ThemeProvider>
       </body>
     </html>
