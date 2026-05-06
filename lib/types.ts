@@ -11,7 +11,7 @@ export interface Article {
   slug: string
   title: string
   description: string
-  category: 'hooks'
+  category: 'hooks' | 'patterns'
   publishedAt: string
   levels: [Level, Level, Level]
 }

@@ -1,40 +1,41 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { highlight, highlightExplanation } from '@/lib/highlight'
-import ArticleSection from '@/components/ArticleSection'
-import article from '@/content/hooks/use-state'
+import ArticlePageContent from '@/components/ArticlePageContent'
+import articleVi from '@/content/hooks/use-state'
+import articleEn from '@/content/hooks/use-state.en'
 import { DOMAIN } from '@/utils/constant'
 
 export const metadata: Metadata = {
-  title: article.title,
-  description: article.description,
+  title: articleVi.title,
+  description: articleVi.description,
   alternates: { canonical: '/blog/hooks/use-state' },
   openGraph: {
-    title: article.title,
-    description: article.description,
+    title: articleVi.title,
+    description: articleVi.description,
     type: 'article',
     url: '/blog/hooks/use-state',
     siteName: 'Hoàng Nam',
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${article.title} | Hoàng Nam`,
-    description: article.description,
+    title: `${articleVi.title} | Hoàng Nam`,
+    description: articleVi.description,
   },
 }
 
 export default async function UseStatePage() {
-  const [codeHtmls, explanationHtmls] = await Promise.all([
-    Promise.all(article.levels.map(level => highlight(level.code, level.language))),
-    Promise.all(article.levels.map(level => highlightExplanation(level.explanation))),
+  const [codeHtmls, explanationHtmlsVi, explanationHtmlsEn] = await Promise.all([
+    Promise.all(articleVi.levels.map(level => highlight(level.code, level.language))),
+    Promise.all(articleVi.levels.map(level => highlightExplanation(level.explanation))),
+    Promise.all(articleEn.levels.map(level => highlightExplanation(level.explanation))),
   ])
 
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'TechArticle',
-    headline: article.title,
-    description: article.description,
-    datePublished: article.publishedAt,
+    headline: articleVi.title,
+    description: articleVi.description,
+    datePublished: articleVi.publishedAt,
     author: { '@type': 'Person', name: 'Hoàng Nam' },
     url: `${DOMAIN}/blog/hooks/use-state`,
   }
@@ -45,45 +46,19 @@ export default async function UseStatePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 py-12">
-        <nav aria-label="Breadcrumb" className="mb-8">
-          <ol className="flex items-center gap-2 text-sm text-muted">
-            <li><Link href="/" className="hover:text-fg transition-colors">Home</Link></li>
-            <li aria-hidden="true">/</li>
-            <li><Link href="/blog" className="hover:text-fg transition-colors">Blog</Link></li>
-            <li aria-hidden="true">/</li>
-            <li><Link href="/blog/hooks" className="hover:text-fg transition-colors">Hooks</Link></li>
-            <li aria-hidden="true">/</li>
-            <li className="text-fg font-medium">useState</li>
-          </ol>
-        </nav>
-
-        <header className="mb-12">
-          <div className="flex items-center gap-2 mb-3">
-            <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-accent-dim text-accent">
-              Hook
-            </span>
-            <time className="text-xs text-muted" dateTime={article.publishedAt}>
-              {new Date(article.publishedAt).toLocaleDateString('vi-VN', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-              })}
-            </time>
-          </div>
-          <h1 className="text-3xl sm:text-4xl font-bold font-display text-fg mb-3">
-            {article.title}
-          </h1>
-          <p className="text-muted text-lg">{article.description}</p>
-        </header>
-
-        <ArticleSection
-          article={article}
-          codeHtmls={codeHtmls}
-          explanationHtmls={explanationHtmls}
-          hideHeader
-        />
-      </main>
+      <ArticlePageContent
+        articleVi={articleVi}
+        articleEn={articleEn}
+        codeHtmls={codeHtmls}
+        explanationHtmlsVi={explanationHtmlsVi}
+        explanationHtmlsEn={explanationHtmlsEn}
+        breadcrumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'Blog', href: '/blog' },
+          { label: 'Hooks', href: '/blog/hooks' },
+          { label: 'useState' },
+        ]}
+      />
     </>
   )
 }

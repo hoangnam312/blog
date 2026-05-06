@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import ccpArticle from '@/content/principles/ccp'
+import ArticleCardList from '@/components/ArticleCardList'
+import ccpVi from '@/content/principles/ccp'
+import ccpEn from '@/content/principles/ccp.en'
 
 export const metadata: Metadata = {
   title: 'Principles',
@@ -20,8 +22,15 @@ export const metadata: Metadata = {
   },
 }
 
-const articles = [
-  { article: ccpArticle, href: '/blog/principles/ccp' },
+const items = [
+  {
+    title: ccpVi.title,
+    descriptionVi: ccpVi.description,
+    descriptionEn: ccpEn.description,
+    publishedAt: ccpVi.publishedAt,
+    href: '/blog/principles/ccp',
+    badge: 'Principles',
+  },
 ]
 
 export default function PrinciplesPage() {
@@ -41,32 +50,7 @@ export default function PrinciplesPage() {
         <h1 className="text-3xl sm:text-4xl font-bold font-display text-fg">Principles</h1>
       </header>
 
-      <div className="divide-y divide-rim">
-        {articles.map(({ article, href }) => (
-          <Link
-            key={href}
-            href={href}
-            className="group flex flex-col gap-1.5 py-6 first:pt-0 last:pb-0 hover:opacity-80 transition-opacity"
-          >
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-accent-dim text-accent">
-                Principles
-              </span>
-              <time className="text-xs text-muted" dateTime={article.publishedAt}>
-                {new Date(article.publishedAt).toLocaleDateString('vi-VN', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                })}
-              </time>
-            </div>
-            <h2 className="text-lg font-semibold font-display text-fg group-hover:text-accent transition-colors">
-              {article.title}
-            </h2>
-            <p className="text-sm text-muted">{article.description}</p>
-          </Link>
-        ))}
-      </div>
+      <ArticleCardList items={items} />
     </main>
   )
 }

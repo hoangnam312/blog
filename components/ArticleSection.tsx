@@ -1,52 +1,51 @@
-import LevelAccordion from './LevelAccordion'
-import type { Article } from '@/lib/types'
+'use client'
 
-const categoryLabel: Record<Article['category'], string> = {
-  hooks: 'Hook',
-  patterns: 'Pattern',
-}
+import LevelAccordion from './LevelAccordion'
+import FormattedDate from './FormattedDate'
+import { useLanguage } from '@/lib/i18n'
+import type { Article } from '@/lib/types'
 
 interface ArticleSectionProps {
   article: Article
+  articleEn?: Article
   codeHtmls: string[]
   explanationHtmls?: string[]
+  explanationHtmlsEn?: string[]
   hideHeader?: boolean
 }
 
-export default function ArticleSection({ article, codeHtmls, explanationHtmls, hideHeader }: ArticleSectionProps) {
+export default function ArticleSection({ article, articleEn, codeHtmls, explanationHtmls, explanationHtmlsEn, hideHeader }: ArticleSectionProps) {
+  const { lang, t } = useLanguage()
+  const activeArticle = (lang === 'en' && articleEn) ? articleEn : article
+  const activeExplanationHtmls = (lang === 'en' && explanationHtmlsEn?.length) ? explanationHtmlsEn : explanationHtmls
+
   return (
-    <section aria-labelledby={`section-${article.slug}`} className="mb-12 last:mb-0">
+    <section aria-labelledby={`section-${activeArticle.slug}`} className="mb-12 last:mb-0">
       {!hideHeader && (
         <header className="mb-5">
           <div className="flex items-center gap-2 mb-2">
             <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-accent-dim text-accent">
-              {categoryLabel[article.category]}
+              {t.categoryLabel[activeArticle.category]}
             </span>
-            <time className="text-xs text-muted" dateTime={article.publishedAt}>
-              {new Date(article.publishedAt).toLocaleDateString('vi-VN', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-              })}
-            </time>
+            <FormattedDate dateTime={activeArticle.publishedAt} />
           </div>
           <h2
-            id={`section-${article.slug}`}
+            id={`section-${activeArticle.slug}`}
             className="text-2xl font-bold font-display text-fg mb-2"
           >
-            {article.title}
+            {activeArticle.title}
           </h2>
-          <p className="text-muted">{article.description}</p>
+          <p className="text-muted">{activeArticle.description}</p>
         </header>
       )}
 
       <div className="space-y-3">
-        {article.levels.map((level, i) => (
+        {activeArticle.levels.map((level, i) => (
           <LevelAccordion
             key={level.badge}
             level={level}
             codeHtml={codeHtmls[i]}
-            explanationHtml={explanationHtmls?.[i]}
+            explanationHtml={activeExplanationHtmls?.[i]}
             defaultOpen={i === 0}
           />
         ))}

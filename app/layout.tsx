@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter, JetBrains_Mono, Manrope } from 'next/font/google'
 import './globals.css'
 import ThemeProvider from '@/components/ThemeProvider'
+import { LanguageProvider } from '@/lib/i18n'
 import Navbar from '@/components/Navbar'
 import { DOMAIN } from '@/utils/constant'
 
@@ -43,6 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="vi" suppressHydrationWarning className={`${inter.variable} ${jetbrainsMono.variable} ${manrope.variable}`}>
       <body className="bg-canvas text-fg font-sans antialiased">
+        <LanguageProvider>
         <ThemeProvider>
           <div className="min-h-screen flex flex-col">
             <Navbar />
@@ -54,6 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </footer>
           </div>
         </ThemeProvider>
+        </LanguageProvider>
       </body>
     </html>
   )

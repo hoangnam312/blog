@@ -2,8 +2,10 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { highlight } from '@/lib/highlight'
 import ArticleSection from '@/components/ArticleSection'
-import compoundArticle from '@/content/patterns/compound-component'
-import renderPropsArticle from '@/content/patterns/render-props'
+import compoundArticleVi from '@/content/patterns/compound-component'
+import renderPropsArticleVi from '@/content/patterns/render-props'
+import compoundArticleEn from '@/content/patterns/compound-component.en'
+import renderPropsArticleEn from '@/content/patterns/render-props.en'
 import { DOMAIN } from '@/utils/constant'
 
 export const metadata: Metadata = {
@@ -24,12 +26,15 @@ export const metadata: Metadata = {
   },
 }
 
-const articles = [compoundArticle, renderPropsArticle]
+const articles = [
+  { vi: compoundArticleVi, en: compoundArticleEn },
+  { vi: renderPropsArticleVi, en: renderPropsArticleEn },
+]
 
 export default async function PatternsPage() {
   const allCodeHtmls = await Promise.all(
-    articles.map(article =>
-      Promise.all(article.levels.map(level => highlight(level.code, level.language)))
+    articles.map(({ vi }) =>
+      Promise.all(vi.levels.map(level => highlight(level.code, level.language)))
     )
   )
 
@@ -66,9 +71,9 @@ export default async function PatternsPage() {
         </header>
 
         <div className="divide-y divide-rim">
-          {articles.map((article, i) => (
-            <div key={article.slug} className="py-10 first:pt-0 last:pb-0">
-              <ArticleSection article={article} codeHtmls={allCodeHtmls[i]} />
+          {articles.map(({ vi, en }, i) => (
+            <div key={vi.slug} className="py-10 first:pt-0 last:pb-0">
+              <ArticleSection article={vi} articleEn={en} codeHtmls={allCodeHtmls[i]} />
             </div>
           ))}
         </div>

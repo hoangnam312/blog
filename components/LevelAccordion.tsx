@@ -7,6 +7,7 @@ import remarkGfm from 'remark-gfm'
 import CodeBlock from './CodeBlock'
 import LivePreview from './LivePreview'
 import type { Level } from '@/lib/types'
+import { useLanguage } from '@/lib/i18n'
 
 const badgeStyle: Record<Level['badge'], string> = {
   'Cơ bản': 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300',
@@ -26,6 +27,7 @@ interface LevelAccordionProps {
 
 export default function LevelAccordion({ level, codeHtml, explanationHtml, defaultOpen }: LevelAccordionProps) {
   const [isOpen, setIsOpen] = useState(defaultOpen)
+  const { t } = useLanguage()
   const id = panelId(level.badge, level.language)
 
   return (
@@ -38,7 +40,7 @@ export default function LevelAccordion({ level, codeHtml, explanationHtml, defau
       >
         <div className="flex items-center gap-3">
           <span className={`text-xs font-bold px-2.5 py-1 rounded-full whitespace-nowrap ${badgeStyle[level.badge]}`}>
-            {level.badge}
+            {t.badges[level.badge]}
           </span>
           {/* <span className="font-semibold text-fg">
             {level.badge === 'Cơ bản' && 'Kiến thức cơ bản'}
@@ -88,7 +90,7 @@ export default function LevelAccordion({ level, codeHtml, explanationHtml, defau
               {level.showLivePreview && level.sandpackCode && (
                 <div className="mt-4">
                   <h3 className="text-sm font-semibold text-muted mb-2">
-                    Live Preview
+                    {t.livePreview}
                   </h3>
                   <LivePreview code={level.sandpackCode} />
                 </div>

@@ -1,4 +1,7 @@
+'use client'
+
 import Link from 'next/link'
+import { useLanguage } from '@/lib/i18n'
 
 const badgeLabel = {
   hooks: 'Hooks',
@@ -14,6 +17,7 @@ export interface Collection {
 }
 
 export default function CollectionCard({ item }: { item: Collection }) {
+  const { t } = useLanguage()
   return (
     <Link
       href={item.href}
@@ -24,7 +28,7 @@ export default function CollectionCard({ item }: { item: Collection }) {
           {badgeLabel[item.category]}
         </span>
         <span className="text-xs text-muted">
-          {item.count} bài
+          {t.articleCount(item.count)}
         </span>
       </div>
 
@@ -33,7 +37,7 @@ export default function CollectionCard({ item }: { item: Collection }) {
       </h2>
 
       <p className="text-sm text-muted line-clamp-2">
-        {item.description}
+        {t.collectionDesc[item.category] ?? item.description}
       </p>
     </Link>
   )
