@@ -8,13 +8,21 @@ import { DOMAIN } from '@/utils/constant'
 export const metadata: Metadata = {
   title: articleVi.title,
   description: articleVi.description,
-  alternates: { canonical: '/blog/principles/ccp' },
+  alternates: {
+    canonical: '/blog/principles/ccp',
+    languages: {
+      vi: '/blog/principles/ccp',
+      en: '/blog/principles/ccp',
+      'x-default': '/blog/principles/ccp',
+    },
+  },
   openGraph: {
     title: articleVi.title,
     description: articleVi.description,
     type: 'article',
     url: '/blog/principles/ccp',
     siteName: 'Hoàng Nam',
+    locale: 'vi_VN',
   },
   twitter: {
     card: 'summary_large_image',
@@ -41,6 +49,7 @@ export default async function CcpPage() {
     headline: articleVi.title,
     description: articleVi.description,
     datePublished: articleVi.publishedAt,
+    inLanguage: ['vi', 'en'],
     author: { '@type': 'Person', name: 'Hoàng Nam' },
     url: `${DOMAIN}/blog/principles/ccp`,
   }

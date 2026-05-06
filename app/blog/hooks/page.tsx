@@ -9,13 +9,21 @@ import useEffectEn from '@/content/hooks/use-effect.en'
 export const metadata: Metadata = {
   title: 'React Hooks',
   description: 'Hướng dẫn đầy đủ về useState, useEffect từ cơ bản đến nâng cao — với ví dụ thực tế và live preview.',
-  alternates: { canonical: '/blog/hooks' },
+  alternates: {
+    canonical: '/blog/hooks',
+    languages: {
+      vi: '/blog/hooks',
+      en: '/blog/hooks',
+      'x-default': '/blog/hooks',
+    },
+  },
   openGraph: {
     title: 'React Hooks',
     description: 'Hướng dẫn đầy đủ về useState, useEffect từ cơ bản đến nâng cao.',
     type: 'website',
     url: '/blog/hooks',
     siteName: 'Hoàng Nam',
+    locale: 'vi_VN',
   },
   twitter: {
     card: 'summary_large_image',

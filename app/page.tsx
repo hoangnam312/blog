@@ -4,6 +4,14 @@ import CollectionCard, { type Collection } from '@/components/CollectionCard'
 export const metadata: Metadata = {
   title: 'Hoàng Nam',
   description: 'Blog về React hooks và patterns.',
+  alternates: {
+    canonical: '/',
+    languages: {
+      vi: '/',
+      en: '/',
+      'x-default': '/',
+    },
+  },
 }
 
 const collections: Collection[] = [

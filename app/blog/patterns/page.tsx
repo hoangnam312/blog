@@ -11,13 +11,21 @@ import { DOMAIN } from '@/utils/constant'
 export const metadata: Metadata = {
   title: 'React Patterns',
   description: 'Hướng dẫn đầy đủ về Compound Component và Render Props — các design patterns thực tế trong React.',
-  alternates: { canonical: '/blog/patterns' },
+  alternates: {
+    canonical: '/blog/patterns',
+    languages: {
+      vi: '/blog/patterns',
+      en: '/blog/patterns',
+      'x-default': '/blog/patterns',
+    },
+  },
   openGraph: {
     title: 'React Patterns',
     description: 'Hướng dẫn đầy đủ về Compound Component và Render Props.',
     type: 'website',
     url: '/blog/patterns',
     siteName: 'Hoàng Nam',
+    locale: 'vi_VN',
   },
   twitter: {
     card: 'summary_large_image',
@@ -43,6 +51,7 @@ export default async function PatternsPage() {
     '@type': 'TechArticle',
     headline: 'React Patterns',
     description: metadata.description,
+    inLanguage: ['vi', 'en'],
     author: { '@type': 'Person', name: 'Hoàng Nam' },
     url: `${DOMAIN}/blog/patterns`,
   }

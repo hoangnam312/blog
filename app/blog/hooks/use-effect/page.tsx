@@ -8,13 +8,21 @@ import { DOMAIN } from '@/utils/constant'
 export const metadata: Metadata = {
   title: articleVi.title,
   description: articleVi.description,
-  alternates: { canonical: '/blog/hooks/use-effect' },
+  alternates: {
+    canonical: '/blog/hooks/use-effect',
+    languages: {
+      vi: '/blog/hooks/use-effect',
+      en: '/blog/hooks/use-effect',
+      'x-default': '/blog/hooks/use-effect',
+    },
+  },
   openGraph: {
     title: articleVi.title,
     description: articleVi.description,
     type: 'article',
     url: '/blog/hooks/use-effect',
     siteName: 'Hoàng Nam',
+    locale: 'vi_VN',
   },
   twitter: {
     card: 'summary_large_image',
@@ -36,6 +44,7 @@ export default async function UseEffectPage() {
     headline: articleVi.title,
     description: articleVi.description,
     datePublished: articleVi.publishedAt,
+    inLanguage: ['vi', 'en'],
     author: { '@type': 'Person', name: 'Hoàng Nam' },
     url: `${DOMAIN}/blog/hooks/use-effect`,
   }

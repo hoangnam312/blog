@@ -5,14 +5,23 @@ import CollectionCard, { type Collection } from '@/components/CollectionCard'
 export const metadata: Metadata = {
   title: 'Blog',
   description: 'Tổng hợp các bài viết về React hooks và patterns từ cơ bản đến nâng cao.',
+  alternates: {
+    canonical: '/blog',
+    languages: {
+      vi: '/blog',
+      en: '/blog',
+      'x-default': '/blog',
+    },
+  },
   openGraph: {
     title: 'Blog',
     description: 'Tổng hợp các bài viết về React hooks và patterns từ cơ bản đến nâng cao.',
     type: 'website',
+    locale: 'vi_VN',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Blog | React Handbook',
+    title: 'Blog | Hoàng Nam',
     description: 'Tổng hợp các bài viết về React hooks và patterns từ cơ bản đến nâng cao.',
   },
 }

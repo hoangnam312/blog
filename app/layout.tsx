@@ -33,6 +33,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(DOMAIN),
   openGraph: {
     siteName: 'Hoàng Nam',
+    locale: 'vi_VN',
     images: ['/og-default.png'],
   },
   twitter: {

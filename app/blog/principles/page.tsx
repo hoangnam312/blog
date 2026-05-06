@@ -7,13 +7,21 @@ import ccpEn from '@/content/principles/ccp.en'
 export const metadata: Metadata = {
   title: 'Principles',
   description: 'Các bộ tiêu chí thiết kế component common trong React.',
-  alternates: { canonical: '/blog/principles' },
+  alternates: {
+    canonical: '/blog/principles',
+    languages: {
+      vi: '/blog/principles',
+      en: '/blog/principles',
+      'x-default': '/blog/principles',
+    },
+  },
   openGraph: {
     title: 'Principles',
     description: 'Các bộ tiêu chí thiết kế component common trong React.',
     type: 'website',
     url: '/blog/principles',
     siteName: 'Hoàng Nam',
+    locale: 'vi_VN',
   },
   twitter: {
     card: 'summary_large_image',

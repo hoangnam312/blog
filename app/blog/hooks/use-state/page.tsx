@@ -8,13 +8,21 @@ import { DOMAIN } from '@/utils/constant'
 export const metadata: Metadata = {
   title: articleVi.title,
   description: articleVi.description,
-  alternates: { canonical: '/blog/hooks/use-state' },
+  alternates: {
+    canonical: '/blog/hooks/use-state',
+    languages: {
+      vi: '/blog/hooks/use-state',
+      en: '/blog/hooks/use-state',
+      'x-default': '/blog/hooks/use-state',
+    },
+  },
   openGraph: {
     title: articleVi.title,
     description: articleVi.description,
     type: 'article',
     url: '/blog/hooks/use-state',
     siteName: 'Hoàng Nam',
+    locale: 'vi_VN',
   },
   twitter: {
     card: 'summary_large_image',
@@ -36,6 +44,7 @@ export default async function UseStatePage() {
     headline: articleVi.title,
     description: articleVi.description,
     datePublished: articleVi.publishedAt,
+    inLanguage: ['vi', 'en'],
     author: { '@type': 'Person', name: 'Hoàng Nam' },
     url: `${DOMAIN}/blog/hooks/use-state`,
   }
