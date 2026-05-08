@@ -53,6 +53,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <footer className="mt-24 border-t border-rim">
               <div className="max-w-4xl mx-auto px-4 sm:px-6 py-6 text-sm text-muted text-center">
                 © {new Date().getFullYear()} Hoàng Nam
+                <span className="mx-2">·</span>
+                <a href="mailto:hoangnam312.dev@gmail.com" className="hover:text-fg transition-colors">hoangnam312.dev@gmail.com</a>
               </div>
             </footer>
           </div>
