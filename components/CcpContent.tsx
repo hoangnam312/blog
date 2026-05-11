@@ -9,8 +9,10 @@ import type { PrinciplesPost } from '@/lib/types'
 interface CcpContentProps {
   articleVi: PrinciplesPost
   articleEn: PrinciplesPost
-  badCodeHtmls: string[]
-  goodCodeHtmls: string[]
+  badCodeHtmlsVi: string[]
+  goodCodeHtmlsVi: string[]
+  badCodeHtmlsEn: string[]
+  goodCodeHtmlsEn: string[]
   originHtmlVi: string
   originHtmlEn: string
   usageHtmlVi: string
@@ -24,9 +26,11 @@ const proseClass = `prose prose-slate dark:prose-invert prose-sm max-w-none
   prose-code:bg-rim-subtle prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-mono prose-code:before:content-none prose-code:after:content-none
   [&_.shiki-wrapper]:not-prose`
 
-export default function CcpContent({ articleVi, articleEn, badCodeHtmls, goodCodeHtmls, originHtmlVi, originHtmlEn, usageHtmlVi, usageHtmlEn, forewordHtmlVi, forewordHtmlEn }: CcpContentProps) {
+export default function CcpContent({ articleVi, articleEn, badCodeHtmlsVi, goodCodeHtmlsVi, badCodeHtmlsEn, goodCodeHtmlsEn, originHtmlVi, originHtmlEn, usageHtmlVi, usageHtmlEn, forewordHtmlVi, forewordHtmlEn }: CcpContentProps) {
   const { lang, t } = useLanguage()
   const article = lang === 'en' ? articleEn : articleVi
+  const badCodeHtmls = lang === 'en' ? badCodeHtmlsEn : badCodeHtmlsVi
+  const goodCodeHtmls = lang === 'en' ? goodCodeHtmlsEn : goodCodeHtmlsVi
   const originHtml = lang === 'en' ? originHtmlEn : originHtmlVi
   const usageHtml = lang === 'en' ? usageHtmlEn : usageHtmlVi
   const forewordHtml = lang === 'en' ? forewordHtmlEn : forewordHtmlVi

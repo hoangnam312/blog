@@ -40,11 +40,14 @@ const articles = [
 ]
 
 export default async function PatternsPage() {
-  const allCodeHtmls = await Promise.all(
-    articles.map(({ vi }) =>
+  const [allCodeHtmlsVi, allCodeHtmlsEn] = await Promise.all([
+    Promise.all(articles.map(({ vi }) =>
       Promise.all(vi.levels.map(level => highlight(level.code, level.language)))
-    )
-  )
+    )),
+    Promise.all(articles.map(({ en }) =>
+      Promise.all(en.levels.map(level => highlight(level.code, level.language)))
+    )),
+  ])
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -82,7 +85,7 @@ export default async function PatternsPage() {
         <div className="divide-y divide-rim">
           {articles.map(({ vi, en }, i) => (
             <div key={vi.slug} className="py-10 first:pt-0 last:pb-0">
-              <ArticleSection article={vi} articleEn={en} codeHtmls={allCodeHtmls[i]} />
+              <ArticleSection article={vi} articleEn={en} codeHtmls={allCodeHtmlsVi[i]} codeHtmlsEn={allCodeHtmlsEn[i]} />
             </div>
           ))}
         </div>

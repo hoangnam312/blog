@@ -32,8 +32,9 @@ export const metadata: Metadata = {
 }
 
 export default async function UseEffectPage() {
-  const [codeHtmls, explanationHtmlsVi, explanationHtmlsEn] = await Promise.all([
+  const [codeHtmlsVi, codeHtmlsEn, explanationHtmlsVi, explanationHtmlsEn] = await Promise.all([
     Promise.all(articleVi.levels.map(level => highlight(level.code, level.language))),
+    Promise.all(articleEn.levels.map(level => highlight(level.code, level.language))),
     Promise.all(articleVi.levels.map(level => highlightExplanation(level.explanation))),
     Promise.all(articleEn.levels.map(level => highlightExplanation(level.explanation))),
   ])
@@ -58,7 +59,8 @@ export default async function UseEffectPage() {
       <ArticlePageContent
         articleVi={articleVi}
         articleEn={articleEn}
-        codeHtmls={codeHtmls}
+        codeHtmlsVi={codeHtmlsVi}
+        codeHtmlsEn={codeHtmlsEn}
         explanationHtmlsVi={explanationHtmlsVi}
         explanationHtmlsEn={explanationHtmlsEn}
         breadcrumbs={[

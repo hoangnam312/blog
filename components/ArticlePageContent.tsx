@@ -15,7 +15,8 @@ interface Crumb {
 interface ArticlePageContentProps {
   articleVi: Article
   articleEn: Article
-  codeHtmls: string[]
+  codeHtmlsVi: string[]
+  codeHtmlsEn: string[]
   explanationHtmlsVi: string[]
   explanationHtmlsEn: string[]
   breadcrumbs: Crumb[]
@@ -24,7 +25,8 @@ interface ArticlePageContentProps {
 export default function ArticlePageContent({
   articleVi,
   articleEn,
-  codeHtmls,
+  codeHtmlsVi,
+  codeHtmlsEn,
   explanationHtmlsVi,
   explanationHtmlsEn,
   breadcrumbs,
@@ -69,7 +71,8 @@ export default function ArticlePageContent({
 
       <ArticleSection
         article={article}
-        codeHtmls={codeHtmls}
+        codeHtmls={codeHtmlsVi}
+        codeHtmlsEn={codeHtmlsEn}
         explanationHtmls={explanationHtmls}
         hideHeader
       />

@@ -9,14 +9,16 @@ interface ArticleSectionProps {
   article: Article
   articleEn?: Article
   codeHtmls: string[]
+  codeHtmlsEn?: string[]
   explanationHtmls?: string[]
   explanationHtmlsEn?: string[]
   hideHeader?: boolean
 }
 
-export default function ArticleSection({ article, articleEn, codeHtmls, explanationHtmls, explanationHtmlsEn, hideHeader }: ArticleSectionProps) {
+export default function ArticleSection({ article, articleEn, codeHtmls, codeHtmlsEn, explanationHtmls, explanationHtmlsEn, hideHeader }: ArticleSectionProps) {
   const { lang, t } = useLanguage()
   const activeArticle = (lang === 'en' && articleEn) ? articleEn : article
+  const activeCodes = (lang === 'en' && codeHtmlsEn?.length) ? codeHtmlsEn : codeHtmls
   const activeExplanationHtmls = (lang === 'en' && explanationHtmlsEn?.length) ? explanationHtmlsEn : explanationHtmls
 
   return (
@@ -44,7 +46,7 @@ export default function ArticleSection({ article, articleEn, codeHtmls, explanat
           <LevelAccordion
             key={level.badge}
             level={level}
-            codeHtml={codeHtmls[i]}
+            codeHtml={activeCodes[i]}
             explanationHtml={activeExplanationHtmls?.[i]}
             defaultOpen={i === 0}
           />

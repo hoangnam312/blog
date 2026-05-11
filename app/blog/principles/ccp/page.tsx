@@ -32,9 +32,11 @@ export const metadata: Metadata = {
 }
 
 export default async function CcpPage() {
-  const [badCodeHtmls, goodCodeHtmls, originHtmlVi, usageHtmlVi, forewordHtmlVi, originHtmlEn, usageHtmlEn, forewordHtmlEn] = await Promise.all([
+  const [badCodeHtmlsVi, goodCodeHtmlsVi, badCodeHtmlsEn, goodCodeHtmlsEn, originHtmlVi, usageHtmlVi, forewordHtmlVi, originHtmlEn, usageHtmlEn, forewordHtmlEn] = await Promise.all([
     Promise.all(articleVi.principles.map(p => highlight(p.badCode, p.language))),
     Promise.all(articleVi.principles.map(p => highlight(p.goodCode, p.language))),
+    Promise.all(articleEn.principles.map(p => highlight(p.badCode, p.language))),
+    Promise.all(articleEn.principles.map(p => highlight(p.goodCode, p.language))),
     highlightExplanation(articleVi.origin),
     highlightExplanation(articleVi.usage),
     articleVi.foreword ? highlightExplanation(articleVi.foreword) : Promise.resolve(null),
@@ -63,8 +65,10 @@ export default async function CcpPage() {
       <CcpContent
         articleVi={articleVi}
         articleEn={articleEn}
-        badCodeHtmls={badCodeHtmls}
-        goodCodeHtmls={goodCodeHtmls}
+        badCodeHtmlsVi={badCodeHtmlsVi}
+        goodCodeHtmlsVi={goodCodeHtmlsVi}
+        badCodeHtmlsEn={badCodeHtmlsEn}
+        goodCodeHtmlsEn={goodCodeHtmlsEn}
         originHtmlVi={originHtmlVi}
         originHtmlEn={originHtmlEn}
         usageHtmlVi={usageHtmlVi}
